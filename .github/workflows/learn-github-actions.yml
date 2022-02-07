@@ -4,7 +4,7 @@ name: learn-github-actions-uipath
 # Controls when the workflow will run
 on: [push]
 # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
+workflow_dispatch:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
   jobs:
   # This workflow contains a multiple job called "print-information", "publish-uipath-package", "test-uipath-package" etc.
@@ -33,16 +33,14 @@ on: [push]
       # Replace with your Orchestrator Values 
       PROJECT_NAME: GitHub_Uipath_Example                         
       PROJECT_FOLDER:
-      ORCH_URL:
-      ORCH_TENANT:${{ secrets.UIPATHTENANTNAME }}
-      ORCH_CLIENT_ID:${{ secrets.UIPATHCLIENTID }}
-      ORCH_USER_KEY:${{ secrets.UIPATHUSERKEY }}
-      ORCH_ACC_NAME:${{ secrets.UIPATHACCOUNTNAME }}
-      
-
-    steps:
+      ORCH_URL: https://cloud.uipath.com/RPABOTSWORLD/DEV
+      ORCH_TENANT: ${{ secrets.UIPATHTENANTNAME }}
+      ORCH_CLIENT_ID: ${{ secrets.UIPATHCLIENTID }}
+      ORCH_USER_KEY: ${{ secrets.UIPATHUSERKEY }}
+      ORCH_ACC_NAME: ${{ secrets.UIPATHACCOUNTNAME }}
+    steps: 
      - name: Build and publish
-       shell: pwsh
-       run: |
-       ./scripts/UiPathPack.ps1 "project.json" .
+       -shell: pwsh
+       -run: |
+        ./scripts/UiPathPack.ps1 project.json
     
