@@ -7,7 +7,7 @@ on: [push]
   workflow_dispatch:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
   jobs:
-  # This workflow contains a multiple job called "build"
+  # This workflow contains a multiple job called "print-information", "publish-uipath-package", "test-uipath-package" etc.
   print-information:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
@@ -27,10 +27,22 @@ on: [push]
       - run: echo "🍏 This job's status is ${{ job.status }}." 
 
   publish-uipath-package:
+    # You should be able to run on windows 2019 or windows latest
     runs-on: windows-latest
     env:
-      Solution_Name: your-solution-name                         # Replace with your solution name, i.e. MyWpfApp.sln.
-  
+      # Replace with your Orchestrator Values 
+      PROJECT_NAME: GitHub_Uipath_Example                         
+      PROJECT_FOLDER:
+      ORCH_URL:
+      ORCH_TENANT:${{ secrets.UIPATHTENANTNAME }}
+      ORCH_CLIENT_ID:${{ secrets.UIPATHCLIENTID }}
+      ORCH_USER_KEY:${{ secrets.UIPATHUSERKEY }}
+      ORCH_ACC_NAME:${{ secrets.UIPATHACCOUNTNAME }}
+      
+
     steps:
-    
+     - name: Build and publish
+       shell: pwsh
+       run: |
+       ./scripts/UiPathPack.ps1 "project.json" .
     
