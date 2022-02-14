@@ -1,0 +1,35 @@
+name: Development workflow
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  cleaner:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Runner workspace path
+        run: |
+          echo "Cleaning up previous run"
+          rm -rf "${{ github.workspace }}"
+
+  build-uipath-nuget-package:
+    # You should be able to run on windows 2019 or windows latest
+    runs-on: windows-latest
+    env:
+      # Replace with your Orchestrator Values 
+      PROJECT_NAME: GitHub_Uipath_Example                         
+      PROJECT_FOLDER: ${{ github.action_path }}
+      ORCH_URL: https://cloud.uipath.com/RPABOTSWORLD/DEV
+      ORCH_TENANT: ${{ secrets.UIPATHTENANTNAME }}
+      ORCH_CLIENT_ID: ${{ secrets.UIPATHCLIENTID }}
+      ORCH_USER_KEY: ${{ secrets.UIPATHUSERKEY }}
+      ORCH_ACC_NAME: ${{ secrets.UIPATHACCOUNTNAME }}
+    steps: 
+      - name: Check out repository code
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+        uses: actions/checkout@v2
+      - name: Build Nuget Package
+        shell: pwsh
+        run: ${{ github.workspace }}\scripts\UiPathPack.ps1 ${{ github.workspace }}\project.json -destination_folder ${{ github.workspace }}\package -autoVersion 
