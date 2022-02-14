@@ -27,7 +27,7 @@ jobs:
 
   publish-uipath-package:
     # You should be able to run on windows 2019 or windows latest
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     env:
       # Replace with your Orchestrator Values 
       PROJECT_NAME: GitHub_Uipath_Example                         
@@ -40,6 +40,5 @@ jobs:
     steps: 
      - name: Build and publish
        shell: pwsh
-       run: |
-        ./scripts/UiPathPack.ps1 project.json
+       run: '& ${{ github.action_path }}/scripts/UiPathPack.ps1 ${{ env.PROJECT_FOLDER }}/project.json'
     
