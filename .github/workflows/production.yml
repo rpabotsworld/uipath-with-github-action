@@ -1,9 +1,9 @@
-name: Development workflow
+name: Production workflow
 
 on:
   push:
     branches:
-      - develop
+      - master
 
 jobs:
   cleaner:
@@ -13,8 +13,7 @@ jobs:
         run: |
           echo "Cleaning up previous run"
           rm -rf "${{ github.workspace }}"
-
-  build-uipath-nuget-package:
+  publish-uipath-nuget-package:
     # You should be able to run on windows 2019 or windows latest
     runs-on: windows-latest
     env:
@@ -27,11 +26,13 @@ jobs:
       ORCH_USER_KEY: ${{ secrets.UIPATHUSERKEY }}
       ORCH_ACC_NAME: ${{ secrets.UIPATHACCOUNTNAME }}
     steps: 
+      - name: Download Artifact
+        uses: actions/download-artifact@v2
+        with:
+            name: NugetPackage
       - name: Check out repository code
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+        # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
         uses: actions/checkout@v2
-      - name: Build Nuget Package
+      - name: Publish Nuget Package
         shell: pwsh
-        run: ${{ github.workspace }}\scripts\UiPathPack.ps1 ${{ github.workspace }}\project.json -destination_folder ${{ github.workspace }}\package -autoVersion 
-      - name: Test the Package Test Cases
-        run: ${{ github.workspace }}\scripts\\UiPathRunTest.ps1  ${{env.ORCH_URL}} ${{env.ORCH_TENANT}} -UserKey ${{env.ORCH_USER_KEY}} -account_name ${{env.ORCH_ACC_NAME}} -testset "Shared\TestSet1"
+        run: ${{ github.workspace }}\scripts\UiPathDeploy.ps1 NugetPackage ${{env.ORCH_URL}} ${{env.ORCH_TENANT}} -UserKey ${{env.ORCH_USER_KEY}} -account_name ${{env.ORCH_ACC_NAME}}
