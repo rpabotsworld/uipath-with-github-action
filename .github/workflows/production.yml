@@ -1,0 +1,40 @@
+name: Production workflow
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  cleaner:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Runner workspace path
+        run: |
+          echo "Cleaning up previous run"
+          rm -rf "${{ github.workspace }}"
+
+  publish-uipath-nuget-package:
+    # You should be able to run on windows 2019 or windows latest
+    runs-on: windows-latest
+    env:
+      # Replace with your Orchestrator Values 
+      PROJECT_NAME: GitHub_Uipath_Example                         
+      PROJECT_FOLDER: ${{ github.action_path }}
+      ORCH_URL: https://cloud.uipath.com/RPABOTSWORLD/DEV
+      ORCH_TENANT: ${{ secrets.UIPATHTENANTNAME }}
+      ORCH_CLIENT_ID: ${{ secrets.UIPATHCLIENTID }}
+      ORCH_USER_KEY: ${{ secrets.UIPATHUSERKEY }}
+      ORCH_ACC_NAME: ${{ secrets.UIPATHACCOUNTNAME }}
+    steps: 
+       steps: 
+      - name: Download Artifact
+        uses: actions/download-artifact@v2
+        with:
+            name: NugetPackage
+      - name: Check out repository code
+        # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+        uses: actions/checkout@v2
+      - name: Publish Nuget Package
+        shell: pwsh
+        run: ${{ github.workspace }}\scripts\UiPathDeploy.ps1 NugetPackage ${{env.ORCH_URL}} ${{env.ORCH_TENANT}} -UserKey ${{env.ORCH_USER_KEY}} -account_name ${{env.ORCH_ACC_NAME}}
