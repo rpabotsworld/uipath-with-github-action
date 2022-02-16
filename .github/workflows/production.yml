@@ -13,8 +13,7 @@ jobs:
         run: |
           echo "Cleaning up previous run"
           rm -rf "${{ github.workspace }}"
-
-  Publish-uipath-nuget-package:
+  publish-uipath-nuget-package:
     # You should be able to run on windows 2019 or windows latest
     runs-on: windows-latest
     env:
@@ -27,7 +26,6 @@ jobs:
       ORCH_USER_KEY: ${{ secrets.UIPATHUSERKEY }}
       ORCH_ACC_NAME: ${{ secrets.UIPATHACCOUNTNAME }}
     steps: 
-       steps: 
       - name: Download Artifact
         uses: actions/download-artifact@v2
         with:
