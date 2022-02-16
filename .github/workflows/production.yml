@@ -14,7 +14,7 @@ jobs:
           echo "Cleaning up previous run"
           rm -rf "${{ github.workspace }}"
 
-  publish-uipath-nuget-package:
+  Publish-uipath-nuget-package:
     # You should be able to run on windows 2019 or windows latest
     runs-on: windows-latest
     env:
