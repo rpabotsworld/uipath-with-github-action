@@ -33,6 +33,6 @@ jobs:
       - name: Check out repository code
         # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
         uses: actions/checkout@v2
-      - name: Publish Nuget Package
+      - name: Publish Nuget Package to Production
         shell: pwsh
         run: ${{ github.workspace }}\scripts\UiPathDeploy.ps1 NugetPackage ${{env.ORCH_URL}} ${{env.ORCH_TENANT}} -UserKey ${{env.ORCH_USER_KEY}} -account_name ${{env.ORCH_ACC_NAME}}
