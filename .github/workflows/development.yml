@@ -80,6 +80,21 @@ jobs:
       - name: Test the Package With Test Cases 
         run: ${{ github.workspace }}\scripts\\UiPathRunTest.ps1  ${{env.ORCH_URL}} ${{env.ORCH_TENANT}} -UserKey ${{env.ORCH_USER_KEY}} -account_name ${{env.ORCH_ACC_NAME}} -testset "TestSet1"
   
+  # Create Pull Request for Merge & Review
+  create-pull-request:
+    needs: test-uipath-published-package
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+      - name: pull-request
+        uses: repo-sync/pull-request@v2
+        with:
+          destination_branch: "master"
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          pr_label: "feature, automated pr"
+          pr_title: "[Example] Simple demo"
+  
   # "notify" workflow for slack notification
   notify:
     name: Notify on Slack
@@ -87,7 +102,6 @@ jobs:
     # Only run this workflow when "build" workflow succeeds
     needs: [ test-uipath-published-package]
     # Only run this workflow if it target is main branch on pull_request event
-    if: ${{ github.base_ref == 'develop' && github.event_name == 'push' }}
     steps:
       - uses: abinoda/slack-action@master
         env:
