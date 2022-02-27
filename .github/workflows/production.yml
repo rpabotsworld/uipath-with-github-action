@@ -1,0 +1,64 @@
+name: Production workflow
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  print-details:
+    runs-on: ubuntu-latest
+    steps:
+      - name: echo-default-env-variables
+        run: |
+          echo "Home: ${HOME}"
+          echo "GITHUB_WORKFLOW: ${GITHUB_WORKFLOW}"
+          echo "GITHUB_ACTIONS: ${GITHUB_ACTIONS}"
+          echo "GITHUB_ACTOR: ${GITHUB_ACTOR}"
+          echo "GITHUB_REPOSITORY: ${GITHUB_REPOSITORY}"
+          echo "GITHUB_EVENT_NAME: ${GITHUB_EVENT_NAME}"
+          echo "GITHUB_WORKSPACE: ${GITHUB_WORKSPACE}"
+          echo "GITHUB_SHA: ${GITHUB_SHA}"
+          echo "GITHUB_REF: ${GITHUB_REF}"
+  cleaner:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Runner workspace path
+        run: |
+          echo "Cleaning up previous run"
+          rm -rf "${{ github.workspace }}"
+  publish-uipath-nuget-package:
+    # You should be able to run on windows 2019 or windows latest
+    runs-on: windows-latest
+    environment: PRD
+    env:
+      # Replace with your Orchestrator Values for Production
+      PROJECT_NAME: GitHub_Uipath_Example                         
+      PROJECT_FOLDER: ${{ github.action_path }}
+      ORCH_URL: https://cloud.uipath.com/RPABOTSWORLD/PRD
+      ORCH_TENANT: ${{ secrets.UIPATHTENANTNAME }}
+      ORCH_CLIENT_ID: ${{ secrets.UIPATHCLIENTID }}
+      ORCH_USER_KEY: ${{ secrets.UIPATHUSERKEY }}
+      ORCH_ACC_NAME: ${{ secrets.UIPATHACCOUNTNAME }}
+    steps: 
+      - name: Check out repository code
+        # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+        uses: actions/checkout@v2
+      - name: Build Nuget Package
+        shell: pwsh
+        run: ${{ github.workspace }}\scripts\UiPathPack.ps1 ${{ github.workspace }}\project.json -destination_folder ${{ github.workspace }}\package
+        # Saving Artifacts
+      - name: Upload UiPath Artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: Artifacts
+          path: |
+           package/*.*
+           scripts/*.ps1
+      - name: Download UiPath Artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: Artifacts
+      - name: Publish Nuget Package to DEV
+        shell: pwsh
+        run: ${{ github.workspace }}\scripts\UiPathDeploy.ps1 ${{ github.workspace }}\package ${{env.ORCH_URL}} ${{env.ORCH_TENANT}} -UserKey ${{env.ORCH_USER_KEY}} -account_name ${{env.ORCH_ACC_NAME}}
