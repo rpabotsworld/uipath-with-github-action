@@ -5,15 +5,15 @@
   "dependencies": {
     "UiPath.Excel.Activities": "[2.11.4]",
     "UiPath.Mail.Activities": "[1.12.3]",
-    "UiPath.System.Activities": "[21.10.3]",
+    "UiPath.System.Activities": "[21.10.4]",
     "UiPath.Testing.Activities": "[1.4.6]",
-    "UiPath.UIAutomation.Activities": "[21.10.4]"
+    "UiPath.UIAutomation.Activities": "[21.10.5]"
   },
   "webServices": [],
   "entitiesStores": [],
   "schemaVersion": "4.0",
   "studioVersion": "21.10.4.0",
-  "projectVersion": "1.0.98729811",
+  "projectVersion": "1.0.98729845",
   "runtimeOptions": {
     "autoDispose": false,
     "netFrameworkLazyLoading": false,

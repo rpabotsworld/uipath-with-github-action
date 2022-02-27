@@ -1201,7 +1201,7 @@
           "lib/net461/System.ValueTuple.dll": {}
         }
       },
-      "UiPath/21.10.32.57908": {
+      "UiPath/21.10.34.30369": {
         "type": "package",
         "compile": {
           "lib/net45/_._": {}
@@ -1620,7 +1620,7 @@
           "lib/net461/UiPath.Platform.dll": {}
         }
       },
-      "UiPath.System.Activities/21.10.3": {
+      "UiPath.System.Activities/21.10.4": {
         "type": "package",
         "dependencies": {
           "CsvHelper": "16.0.0",
@@ -1885,12 +1885,12 @@
           }
         }
       },
-      "UiPath.UIAutomation.Activities/21.10.4": {
+      "UiPath.UIAutomation.Activities/21.10.5": {
         "type": "package",
         "dependencies": {
           "Newtonsoft.Json": "11.0.2",
           "System.IO.Abstractions": "3.0.10",
-          "UiPath": "[21.10.32.57908]",
+          "UiPath": "[21.10.34.30369]",
           "UiPath.Activities.RuntimeGovernance": "1.1.3",
           "UiPath.ImageProcessing": "21.10.2",
           "UiPath.OCR.Activities": "3.3.2",
@@ -3384,7 +3384,7 @@
           "lib/net461/System.ValueTuple.dll": {}
         }
       },
-      "UiPath/21.10.32.57908": {
+      "UiPath/21.10.34.30369": {
         "type": "package",
         "compile": {
           "lib/net45/_._": {}
@@ -3803,7 +3803,7 @@
           "lib/net461/UiPath.Platform.dll": {}
         }
       },
-      "UiPath.System.Activities/21.10.3": {
+      "UiPath.System.Activities/21.10.4": {
         "type": "package",
         "dependencies": {
           "CsvHelper": "16.0.0",
@@ -4068,12 +4068,12 @@
           }
         }
       },
-      "UiPath.UIAutomation.Activities/21.10.4": {
+      "UiPath.UIAutomation.Activities/21.10.5": {
         "type": "package",
         "dependencies": {
           "Newtonsoft.Json": "11.0.2",
           "System.IO.Abstractions": "3.0.10",
-          "UiPath": "[21.10.32.57908]",
+          "UiPath": "[21.10.34.30369]",
           "UiPath.Activities.RuntimeGovernance": "1.1.3",
           "UiPath.ImageProcessing": "21.10.2",
           "UiPath.OCR.Activities": "3.3.2",
@@ -6645,10 +6645,10 @@
         "version.txt"
       ]
     },
-    "UiPath/21.10.32.57908": {
-      "sha512": "r+5U/utGJUDCQo0O1S0SWqA7Fbmpnl145vFaDHFbUx+FhAmUqmGALocLWkrqY/ALx6fR7W/zxi+nAU/wOGuAlw==",
+    "UiPath/21.10.34.30369": {
+      "sha512": "LB7fKEMmZ7Tp5QWcL/Qeh6VkaF2ZAEtv5ZVdrSNKu5/vV/UZ7K/0vIPqkVct5an4+k0Yd9ZHY6nYZfMKwpo9zg==",
       "type": "package",
-      "path": "uipath/21.10.32.57908",
+      "path": "uipath/21.10.34.30369",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -6702,7 +6702,7 @@
         "build/UiPath/slinject.exe",
         "lib/net45/UiPath.Interop.dll",
         "lib/net5.0-windows7.0/UiPath.Interop.dll",
-        "uipath.21.10.32.57908.nupkg.sha512",
+        "uipath.21.10.34.30369.nupkg.sha512",
         "uipath.nuspec"
       ]
     },
@@ -7335,10 +7335,10 @@
         "uipath.platform.nuspec"
       ]
     },
-    "UiPath.System.Activities/21.10.3": {
-      "sha512": "FQm/Ik5f1vGdD4ZhEMKRkxJlpK3MBs+wwoVNYSzdoIL+dgTnTDv4CSt/2069LwaPUxYcNPhf5aR3PUM8QYA3WQ==",
+    "UiPath.System.Activities/21.10.4": {
+      "sha512": "MtvNs1MDwR5B9ASTJo5uGebTtXNCiDZQdQwRn0FtuY1U6222mOoA1CIB06XKG8cfRFDwQrX7W74m+C6cLWix5Q==",
       "type": "package",
-      "path": "uipath.system.activities/21.10.3",
+      "path": "uipath.system.activities/21.10.4",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -7418,7 +7418,7 @@
         "lib/net5.0/ru/UiPath.System.Activities.resources.dll",
         "lib/net5.0/tr/UiPath.System.Activities.resources.dll",
         "lib/net5.0/zh-CN/UiPath.System.Activities.resources.dll",
-        "uipath.system.activities.21.10.3.nupkg.sha512",
+        "uipath.system.activities.21.10.4.nupkg.sha512",
         "uipath.system.activities.nuspec"
       ]
     },
@@ -7585,14 +7585,13 @@
         "uipath.testing.activities.nuspec"
       ]
     },
-    "UiPath.UIAutomation.Activities/21.10.4": {
-      "sha512": "az+eqAlhqXck0FUEhaUCR3+Z2mfLHXLx69jnHZzC7y87LMAQ1VWI6VGVBQMdvcfRhz0BnaSDRL5MHzxJmxnBwA==",
+    "UiPath.UIAutomation.Activities/21.10.5": {
+      "sha512": "k6iF0eDbXmjSRnl+hFFR5jHWCA6NvT4avjvBv7/5iBWzW4B3KBvs5ATx71N44da3kqi2GuK4lgxrsHImJViV3A==",
       "type": "package",
-      "path": "uipath.uiautomation.activities/21.10.4",
+      "path": "uipath.uiautomation.activities/21.10.5",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "AllDependencies.json",
         "build/ActiproSoftware.DataGrid.Contrib.Wpf.dll",
         "build/ActiproSoftware.Docking.Wpf.dll",
         "build/ActiproSoftware.Editors.Wpf.dll",
@@ -7844,8 +7843,7 @@
         "lib/net5.0-windows7.0/zh-CN/UiPath.UIAutomationNext.resources.dll",
         "lib/net5.0-windows7.0/zh-CN/UiPath.UiAutomation.Activities.resources.dll",
         "lib/net5.0-windows7.0/zh-CN/UiPath.Wizards.resources.dll",
-        "nuget.cache",
-        "uipath.uiautomation.activities.21.10.4.nupkg.sha512",
+        "uipath.uiautomation.activities.21.10.5.nupkg.sha512",
         "uipath.uiautomation.activities.nuspec"
       ]
     },
@@ -8057,9 +8055,9 @@
     ".NETFramework,Version=v4.6.1": [
       "UiPath.Excel.Activities >= 2.11.4 <= 2.11.4",
       "UiPath.Mail.Activities >= 1.12.3 <= 1.12.3",
-      "UiPath.System.Activities >= 21.10.3 <= 21.10.3",
+      "UiPath.System.Activities >= 21.10.4 <= 21.10.4",
       "UiPath.Testing.Activities >= 1.4.6 <= 1.4.6",
-      "UiPath.UIAutomation.Activities >= 21.10.4 <= 21.10.4"
+      "UiPath.UIAutomation.Activities >= 21.10.5 <= 21.10.5"
     ]
   },
   "packageFolders": {
@@ -8089,7 +8087,7 @@
           "UiPath.System.Activities": {
             "include": "Runtime",
             "target": "Package",
-            "version": "[21.10.3, 21.10.3]"
+            "version": "[21.10.4, 21.10.4]"
           },
           "UiPath.Testing.Activities": {
             "include": "Runtime",
@@ -8099,7 +8097,7 @@
           "UiPath.UIAutomation.Activities": {
             "include": "Runtime",
             "target": "Package",
-            "version": "[21.10.4, 21.10.4]"
+            "version": "[21.10.5, 21.10.5]"
           }
         },
         "runtimeIdentifierGraphPath": "C:\\Users\\prasa\\AppData\\Local\\Programs\\UiPath\\Studio\\runtime.json"
